@@ -1,4 +1,5 @@
 const fileInput = document.querySelector(".file-input"),
+
 filterValue = document.querySelector(".slider .value"),
 filterSlider = document.querySelector(".slider input"),
 filterName = document.querySelector(".filter-info .name"),
@@ -8,6 +9,9 @@ chooseImgBtn = document.querySelector(".chose-image");
 
 let brightness = 100, saturation = 100, inversion = 0, grayscale = 0;
 
+const applyFilters = () => {
+    previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`
+}
 const loadImage = () => {
     let file = fileInput.files[0]
     if(!file) return;
@@ -50,11 +54,12 @@ const updateFilter = () => {
         brightness = filterSlider.value
     } else if(selectedFilter.id === "saturation") {
         saturation = filterSlider.value
-    } else if(selectedFilter.id === "inverstion") {
+    } else if(selectedFilter.id === "inversion") {
         inversion = filterSlider.value
     } else {
         grayscale = filterSlider.value
     }
+    applyFilters();
 }
 
 fileInput.addEventListener("change", loadImage);
