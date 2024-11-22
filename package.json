@@ -1,0 +1,32 @@
+{
+  "name": "photo-editing-app",
+  "version": "1.0.0",
+  "description": "photo_editing app",
+  "main": "app.js",
+  "scripts": {
+    "build": "tailwindcss -i ./public/Css/tailwind/main.css -o ./src/output.css --watch",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OLEHFIDELIS/photo-editing-app.git"
+  },
+  "author": "Oleh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OLEHFIDELIS/photo-editing-app/issues"
+  },
+  "homepage": "https://github.com/OLEHFIDELIS/photo-editing-app#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "tailwindcss": "^3.4.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2"
+  }
+}

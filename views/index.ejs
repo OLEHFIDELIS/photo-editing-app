@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Editor</title>
+  <!-- <link href="./src/output.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" type="image/x-icon">
+  <link rel="stylesheet" href="/Css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/6.1.1/css/all.min.csss"/>
+ 
+</head>
+<body>
+    <div class="container1 disable">
+        <h2 class="text-xl font-semibold ">Easy Image Editor</h2>
+        <div class="wrapper flex ">
+          <div class="editor-panel">
+            <div class="filter">
+              <label class="title block mb-4">Filter</label>
+              <div class="options">
+                <button class="active">Brightness</button>
+                <button class="">Sturation</button>
+                <button class="">Inversion</button>
+                <button class="">Grayscale</button>
+              </div> 
+              <div class="slider mt-6">
+                <div class="filter-info">
+                  <p class="name">Brightness</p>
+                  <p class="value">100%</p>
+                </div>
+                <input type="range" value="100" min="0" max="200">
+              </div>
+            </div>
+            <div class="rotate">
+              <label class="title"> Rotate & Flip</label>
+              <div class="options">
+                <button class=""><i class="fa-solid fa-rotate-left"></i>rotate-left</button>
+                <button class="">rotate-right</button>
+                <button class="">vertical</button>
+                <button class="">horizontal</button>
+              </div>
+            </div>
+          </div>
+          <div class="preview-img">
+            <!-- By <a href="//commons.wikimedia.org/wiki/User:Ranjithsiji" title="User:Ranjithsiji">Ranjithsiji</a> - <span class="int-own-work" lang="en">Own work</span>Created from<a href="//commons.wikimedia.org/wiki/File:Natural_landmark_without_photo.svg" title="File:Natural landmark without photo.svg">File:Natural landmark without photo.svg</a>; by <a href="//commons.wikimedia.org/wiki/User:Hellerick" title="User:Hellerick">User:Hellerick</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=94051055">Link</a> -->
+            <img src="" alt="">
+          </div>
+        </div>
+        <div class="controls">
+          <button class="reset-filter">Reset filter</button>
+          <div class="row">
+            <input type="file" name="" id="" class="file-input" accept="image/*" hidden>
+            <button class=" chose-image">Chose Image</button>
+            <button class=" save-image">Save Image</button>
+          </div>
+        </div>
+    </div>
+    
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/Js/script.js"></script>
+</html>
