@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Photo Editor</title>
-  <!-- <link href="./src/output.css" rel="stylesheet"> -->
+  <link href="../src/output.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" type="image/x-icon">
   <link rel="stylesheet" href="/Css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/6.1.1/css/all.min.csss"/>
  
 </head>
 <body>
-    <div class="container1 disable">
-        <h2 class="text-xl font-semibold ">Easy Image Editor</h2>
+    <div class="container1 ">
+        <h2 class=" text-xl font-semibold">Easy Image Editor</h2>
         <div class="wrapper flex ">
           <div class="editor-panel">
             <div class="filter">
               <label class="title block mb-4">Filter</label>
               <div class="options">
-                <button class="active">Brightness</button>
-                <button class="">Sturation</button>
-                <button class="">Inversion</button>
-                <button class="">Grayscale</button>
+                <button id="brightness" class="active">Brightness</button>
+                <button id="saturation">Sturation</button>
+                <button id="inversion">Inversion</button>
+                <button id="grayscale">Grayscale</button>
               </div> 
               <div class="slider mt-6">
                 <div class="filter-info">
@@ -50,7 +50,7 @@
           <button class="reset-filter">Reset filter</button>
           <div class="row">
             <input type="file" name="" id="" class="file-input" accept="image/*" hidden>
-            <button class=" chose-image">Chose Image</button>
+            <button class=" chose-image mt-6">Chose Image</button>
             <button class=" save-image">Save Image</button>
           </div>
         </div>
