@@ -1,4 +1,6 @@
 const fileInput = document.querySelector(".file-input"),
+redoFilterBtn = document.querySelector(".save-image"),
+resetFilterBtn = document.querySelector(".reset-filter"),
 rotateOptions = document.querySelectorAll(".rotate button"),
 filterValue = document.querySelector(".slider .value"),
 filterSlider = document.querySelector(".slider input"),
@@ -6,6 +8,23 @@ filterName = document.querySelector(".filter-info .name"),
 filterOptions = document.querySelectorAll(".filter button"),
 previewImg = document.querySelector(".preview-img img"),
 chooseImgBtn = document.querySelector(".chose-image");
+
+const saveState = () => {
+    undoStack.push({
+        brightness,
+        saturation,
+        inversion,
+        grayscale,
+        rotate,
+        flipHorizontal,
+        flipVertical
+    });
+    // Clear redo stack on a new action
+    redoStack = [];
+};
+
+let undoStack = [];
+let redoStack = [];
 
 let brightness = 100, saturation = 100, inversion = 0, grayscale = 0;
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
@@ -79,6 +98,33 @@ rotateOptions.forEach(option => {
    })
 });
 
+const resetFilter = () => {
+    brightness = 100; saturation = 100; inversion = 0; grayscale = 0;
+    rotate = 0; flipHorizontal = 1; flipVertical = 1; 
+    if (brightness) {
+        filterSlider.value = brightness;
+        filterValue.innerText = `${brightness}%`
+    } else if (saturation) {
+        filterSlider.value = saturation;
+        filterValue.innerText = `${saturation}%`;
+    } else if (inversion) {
+        filterSlider.value = 0;
+        filterValue.innerText = 0;  
+    } else {
+        filterSlider.value = grayscale;
+        filterValue.innerText = `${grayscale}%`;
+    }
+    applyFilters();
+}
+
+const redoFilter = () => {
+    brightness = filterSlider.value; saturation = filterSlider.value; inversion = filterSlider.value; grayscale = filterSlider.value;
+    rotate = 0; flipHorizontal = 1; flipVertical = 1; 
+    applyFilters();
+}
+
 fileInput.addEventListener("change", loadImage);
-filterSlider.addEventListener("input", updateFilter);
+filterSlider.addEventListener("input", updateFilter,);
+resetFilterBtn.addEventListener("click", resetFilter);
+redoFilterBtn.addEventListener("click", redoFilter);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
