@@ -1,5 +1,5 @@
 const fileInput = document.querySelector(".file-input"),
-save = document.querySelector(".save-image"),
+saveImgBtn = document.querySelector(".save-image"),
 redoFilterBtn = document.querySelector(".redo-filter"),
 resetFilterBtn = document.querySelector(".reset-filter"),
 rotateOptions = document.querySelectorAll(".rotate button"),
@@ -35,6 +35,7 @@ const loadImage = () => {
     if (!file) return;
     previewImg.src = URL.createObjectURL(file);
     previewImg.addEventListener("load", () => {
+        resetFilterBtn.click()
         document.querySelector(".container1").classList.remove("disable");
     });
 }
@@ -103,6 +104,10 @@ rotateOptions.forEach(option => {
 // Reset filters
 const resetFilter = () => {
     saveState(); // Save current state before resetting
+    if (undoStack.length === 0) return;
+    const lastState = undoStack.pop();
+    redoStack.push({ brightness, saturation, inversion, grayscale, rotate, flipHorizontal, flipVertical });
+    ({ brightness, saturation, inversion, grayscale, rotate, flipHorizontal, flipVertical } = lastState);
     brightness = 100; saturation = 100; inversion = 0; grayscale = 0;
     rotate = 0; flipHorizontal = 1; flipVertical = 1;
     filterSlider.value = brightness;
@@ -127,10 +132,33 @@ const redoChange = () => {
     ({ brightness, saturation, inversion, grayscale, rotate, flipHorizontal, flipVertical } = lastState);
     applyFilters();
 }
+const saveImage = () => {
+    // Create a canvas element
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas dimensions to match the preview image
+    canvas.width = previewImg.naturalWidth;
+    canvas.height = previewImg.naturalHeight;
+
+    // Apply transformations and filters
+    ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate((rotate * Math.PI) / 180);
+    ctx.scale(flipHorizontal, flipVertical);
+    ctx.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+
+    // Convert canvas to a data URL
+    const link = document.createElement("a");
+    link.download = "edited-image.png"; // Set default file name
+    link.href = canvas.toDataURL(); // Get image data as a base64 URL
+    link.click(); // Trigger download
+}
 
 // Event listeners
 fileInput.addEventListener("change", loadImage);
 filterSlider.addEventListener("input", updateFilter);
-resetFilterBtn.addEventListener("click", undoChange);
-redoFilterBtn.addEventListener("click", redoChange); // Attach redo function
+resetFilterBtn.addEventListener("click", resetFilter);
+redoFilterBtn.addEventListener("click", redoChange);
+saveImgBtn.addEventListener("click", saveImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
