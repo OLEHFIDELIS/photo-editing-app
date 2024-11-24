@@ -111,6 +111,10 @@ body{
   color: #6C757D;
   border: 1px solid #6C757D;
 }
+.controls .redo-filter {
+  color: #6C757D;
+  border: 1px solid #6C757D;
+}
 .controls .chose-image {
   background: #6C757D;
   border: 1px solid #6C757D;
